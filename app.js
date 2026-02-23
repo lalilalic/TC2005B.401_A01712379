@@ -98,17 +98,23 @@ const html = `
     <button class="modal-close is-large" aria-label="close"></button>
   </div>
 
-  <script src="js/lol.js"></script>
+  <!--script src="js/lol.js"></script-->
   </body>
 </html>
 `;
 
 const server = http.createServer((request, response) => {  
 
-    console.log(request.url);
-    response.setHeader('Content-Type', 'text/html');
-    response.write(html);
-    response.end();
+    if (request.url == "/") {
+        response.setHeader('Content-Type', 'text/html');
+        response.write(html);
+        response.end();
+    } else {
+        response.setHeader('Content-Type', 'text/html');
+        response.write("404");
+        response.end();
+    }
+    
 
     //const datos_completos = [];
 
