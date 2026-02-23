@@ -112,30 +112,30 @@ const html_index = `
 const html_form = `
     <form>
         <div class="field">
-            <label class="label">Nombre</label>
+            <label for="nombre" class="label">Nombre</label>
             <div class="control">
-                <input class="input" type="text" placeholder="e.g Vi">
+                <input id="nombre" class="input" type="text" placeholder="e.g Vi">
             </div>
         </div>
 
         <div class="field">
-            <label class="label">Descripción</label>
+            <label for="descripcion" class="label">Descripción</label>
             <div class="control">
-                <input class="input" type="text" placeholder="e.g. Criada en las calles salvajes de Zaun...">
+                <input id="descripcion" class="input" type="text" placeholder="e.g. Criada en las calles salvajes de Zaun...">
             </div>
         </div>
 
         <div class="field">
-            <label class="label">Tipo</label>
+            <label for="tipo" class="label">Tipo</label>
             <div class="control">
-                <input class="input" type="text" placeholder="e.g. Peleador">
+                <input id="tipo" class="input" type="text" placeholder="e.g. Peleador">
             </div>
         </div>
 
         <div class="field">
-            <label class="label">Imagen</label>
+            <label for="imagen" class="label">Imagen</label>
             <div class="control">
-                <input class="input" type="text" placeholder="e.g. https://tooys.mx/media/catalog/product/cache/0daeb07bb1d294c1f281fab47369d56a/h/o/hot-toys-league-of-legends-vi-sixth-scale_0.jpg">
+                <input id="imagen" class="input" type="text" placeholder="e.g. https://tooys.mx/media/catalog/product/cache/0daeb07bb1d294c1f281fab47369d56a/h/o/hot-toys-league-of-legends-vi-sixth-scale_0.jpg">
             </div>
         </div>
 
