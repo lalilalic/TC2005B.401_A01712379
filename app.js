@@ -26,7 +26,7 @@ const html_footer = `
 </html>
 `;
 
-const html = `
+const html_index = `
         <a class="button is-primary" href="/new">Nuevo personaje</a>
         <div class="columns">
             <div class="column">
@@ -109,15 +109,49 @@ const html = `
   </div>
 `;
 
+const html_form = `
+    <form>
+        <div class="field">
+            <label class="label">Nombre</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="e.g Vi">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Descripción</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="e.g. Criada en las calles salvajes de Zaun...">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Tipo</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="e.g. Peleador">
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Imagen</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="e.g. https://tooys.mx/media/catalog/product/cache/0daeb07bb1d294c1f281fab47369d56a/h/o/hot-toys-league-of-legends-vi-sixth-scale_0.jpg">
+            </div>
+        </div>
+
+        <input class="button is-primary" type="submit" value="Guardar personaje">
+    </form>
+`;
+
 const server = http.createServer((request, response) => {  
 
     if (request.url == "/") {
         response.setHeader('Content-Type', 'text/html');
-        response.write(html_header + html + html_footer);
+        response.write(html_header + html_index + html_footer);
         response.end();
     } else if (request.url == "/new") {
         response.setHeader('Content-Type', 'text/html');
-        response.write(html_header + "Aquí va una forma" + html_footer);
+        response.write(html_header + html_form + html_footer);
         response.end();
     } else {
         response.setHeader('Content-Type', 'text/html');
