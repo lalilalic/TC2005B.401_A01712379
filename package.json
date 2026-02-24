@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/ejuarezp/tc2005b_lol/issues"
   },
-  "homepage": "https://github.com/ejuarezp/tc2005b_lol#readme"
+  "homepage": "https://github.com/ejuarezp/tc2005b_lol#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
 }
