@@ -36,10 +36,6 @@ const personajes = [
     },
 ];
 
-const html_header = ``;
-const html_footer = ``;
-const html_form = ``;
-
 //Middleware
 router.use((request, response, next) => {
     console.log('Middleware!');
