@@ -53,7 +53,7 @@ router.get('/new', (request, response, next) => {
 router.post('/new', (request, response, next) => {
     console.log(request.body);
     personajes.push(request.body);
-    response.send(html_header + html_form + html_footer);
+    response.redirect('/personajes');
 });
 
 router.get('/old', (request, response, next) => {
