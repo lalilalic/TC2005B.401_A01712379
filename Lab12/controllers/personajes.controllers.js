@@ -18,5 +18,10 @@ exports.get_old = (request, response, next) => {
 
 exports.get_list = (request, response, next) => {
     const personajes = Personaje.fetchAll();
-    response.render('list', {personajes: personajes}); 
+    response.render('list', {personajes: personajes});
+};
+
+exports.post_delete = (request, response, next) => {
+    Personaje.deleteByName(request.body.nombre);
+    response.redirect('/personajes');
 };
