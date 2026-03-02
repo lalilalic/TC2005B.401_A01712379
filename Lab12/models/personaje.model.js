@@ -52,5 +52,7 @@ module.exports = class Personaje {
     static fetchAll() {
         return personajes;
     }
-
+    static findByTipo(tipo) {
+        return personajes.filter(p => p.tipo === tipo);
+}
 }
