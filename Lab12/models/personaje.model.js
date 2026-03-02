@@ -54,5 +54,14 @@ module.exports = class Personaje {
     }
     static findByTipo(tipo) {
         return personajes.filter(p => p.tipo === tipo);
-}
+    }
+
+    // Este método servirá para eliminar un personaje por su nombre
+    static deleteByName(nombre) {
+    const index = personajes.findIndex(p => p.nombre === nombre);
+    if (index >= 0) {
+        personajes.splice(index, 1);
+    }
+    }
+
 }
