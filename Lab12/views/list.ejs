@@ -16,6 +16,14 @@
                     <figure class="image">
                         <img class="is-rounded" src="<%= personaje.imagen %>" />
                     </figure>
+
+                    <!-- FORMULARIO ELIMINAR -->
+                    <form action="/personajes/delete" method="POST">
+                        <input type="hidden" name="nombre" value="<%= personaje.nombre %>">
+                        <button class="button is-danger is-small" type="submit">
+                            Eliminar 
+                        </button>
+                    </form>
                 </div>
                     
             <% } %>
