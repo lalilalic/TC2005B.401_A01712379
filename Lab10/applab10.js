@@ -148,8 +148,11 @@ const server = http.createServer((request, response) => {
                 imagen: string_datos_completos.split('&')[3].split('=')[1],
             });
 
-            // También guardar los datos en el archivo personajes.txt
-            fs.appendFileSync('personajes.txt', string_datos_completos + '\n');
+
+            // También guardar los datos en el archivo personajes.txt dentro de Lab10
+            const path = require('path');
+            const archivoPath = path.join(__dirname, 'personajes.txt');
+            fs.appendFileSync(archivoPath, string_datos_completos + '\n');
             response.write(html_header + "Se guardó el nuevo personaje con los siguientes datos: " + 
             string_datos_completos + html_footer);
             response.end();

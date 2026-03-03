@@ -1,0 +1,2 @@
+nombre=vi&descripcion=&tipo=maga&imagen=
+nombre=Gwen&descripcion=Voladora+y+fuerte&tipo=Maga&imagen=
