@@ -34,15 +34,18 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary" href="/signup">
+              <a class="button is-primary" href="/users/signup">
                 <strong>Sign up</strong>
               </a>
-              <a class="button is-light" href="/login">
-                Log in
-              </a>
-              <a class="button is-light" href="/logout">
-                Log out
-              </a>
+              <% if (username == '') { %> 
+                <a class="button is-light" href="/users/login">
+                  Log in
+                </a>
+              <% } else { %> 
+                <a class="button is-light" href="/users/logout">
+                  Log out
+                </a>
+              <% } %>
             </div>
           </div>
         </div>
