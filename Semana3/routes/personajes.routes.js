@@ -112,6 +112,11 @@ router.post('/new', (request, response, next) => {
     response.send(html_header + html_form + html_footer);
 })
 
+router.arguments('/old', (request, response, next) => {
+    const path =  require('path');
+    response.sendFile(path.join(__dirname, '..' , 'old_labs', 'index.html'));
+});
+
 router.use((request, response, next) => {
     let html_index = `
             <a class="button is-primary" href="/personajes/new">Nuevo personaje</a>
