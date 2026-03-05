@@ -12,7 +12,7 @@
             <% for (let personaje of personajes) { %>
 
                 <div class="column">
-                    <%= personaje.nombre %>
+                    <a href="/personajes/<%= personaje.id %>"><%= personaje.nombre %></a>
                     <figure class="image">
                         <img class="is-rounded" src="<%= personaje.imagen %>" />
                     </figure>
