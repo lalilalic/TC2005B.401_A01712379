@@ -25,7 +25,7 @@ exports.get_old = (request, response, next) => {
 
 exports.get_list = (request, response, next) => {
     console.log(request.session.username);
-    Personaje.fetchAll().then(([rows, fieldData]) => {
+    Personaje.fetch(request.params.personaje_id).then(([rows, fieldData]) => {
         return response.render('list', {
             username: request.session.username || '',
             personajes: rows,
