@@ -13,8 +13,9 @@ exports.get_add = (request, response, next) => {
 exports.post_add = (request, response, next) => {
     const personaje = new Personaje(request.body.nombre, 
         request.body.descripcion, request.body.tipo, request.body.imagen);
-    personaje.save();
-    response.redirect('/personajes');
+    personaje.save().then(() => {
+        return response.redirect('/personajes');
+    }).catch((error) => {next(error)});
 };
 
 exports.get_old = (request, response, next) => {

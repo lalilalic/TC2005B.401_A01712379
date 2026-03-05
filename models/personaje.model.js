@@ -12,7 +12,10 @@ module.exports = class Personaje {
 
     //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        personajes.push(this);
+        return db.execute(
+            'INSERT INTO personajes(nombre, descripcion, tipo_id, imagen) values (?, ?, ?, ?)', 
+            [this.nombre, this.descripcion, this.tipo, this.imagen]
+        );
     }
 
     //Este método servirá para devolver los objetos del almacenamiento persistente.
