@@ -20,9 +20,10 @@ exports.get_old = (request, response, next) => {
 
 exports.get_list = (request, response, next) => {
     console.log(request.session.username);
-    const personajes = Personaje.fetchAll();
-    response.render('list', {
-        username: request.session.username || '',
-        personajes: personajes,
-    }); 
+    Personaje.fetchAll().then(([rows, fieldData]) => {
+        return response.render('list', {
+            username: request.session.username || '',
+            personajes: rows,
+        }); 
+    }).catch(() => {});
 };
