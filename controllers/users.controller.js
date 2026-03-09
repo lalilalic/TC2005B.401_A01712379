@@ -5,9 +5,10 @@ exports.get_login = (request, response, next) => {
     const error = request.session.error || '';
     request.session.error = '';
     response.render('login', {
+        csrfToken: request.csrfToken(),
         error: error,
         username: request.session.username || '',
-    });
+    }); 
 };
 
 exports.post_login = (request, response, next) => {
@@ -48,6 +49,7 @@ exports.get_signup = (request, response, next) => {
     const error = request.session.error || '';
     request.session.error = '';
     response.render('signup', {
+        csrfToken: request.csrfToken(),
         username: request.session.username || '',
         error: error,
     })

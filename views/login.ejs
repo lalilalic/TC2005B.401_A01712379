@@ -2,6 +2,7 @@
 <%- include('includes/_error') %>
 
 <form action="/users/login" method="POST">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
     <div class="field">
         <label for="username" class="label">Nombre de usuario</label>
         <div class="control">

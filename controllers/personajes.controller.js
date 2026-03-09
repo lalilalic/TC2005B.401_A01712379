@@ -4,6 +4,7 @@ const Tipo = require('../models/tipo.model');
 exports.get_add = (request, response, next) => {
     Tipo.fetchAll().then(([rows, fieldData]) => {
         response.render('new', {
+            csrfToken: request.csrfToken(),
             username: request.session.username || '',
             tipos: rows,
         });
