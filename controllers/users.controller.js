@@ -1,3 +1,5 @@
+const User = require("../models/user.model");
+
 exports.get_login = (request, response, next) => {
     response.render('login', {
         username: request.session.username || '',
@@ -29,6 +31,13 @@ exports.post_signup = (request, response, next) => {
         request.session.error = 'Las contraseñas no coinciden';
         return response.redirect('/users/signup');
     } else {
-        return response.redirect('/users/login');
+        const user = new User(
+            request.body.username, request.body.nombre, request.body.password, request.body.correo);
+        user.save().then(() => {
+            return response.redirect('/users/login');
+        }).catch((error) => {
+            console.log(error);
+            next(error);
+        });
     }
 };
