@@ -1,0 +1,124 @@
+:root {
+    --sand: #f7e8c8;
+    --foam: #f7fffe;
+    --ocean: #00a7a0;
+    --ocean-deep: #007f86;
+    --sky: #9cd9ff;
+    --coral: #ff7f6e;
+    --sun: #ffd26f;
+    --text-main: #15404a;
+}
+
+html {
+    min-height: 100%;
+    background:
+        radial-gradient(circle at 5% 0%, rgba(255, 210, 111, 0.35), transparent 30%),
+        radial-gradient(circle at 95% 0%, rgba(156, 217, 255, 0.45), transparent 35%),
+        linear-gradient(180deg, #e9f8ff 0%, #d4f5f2 38%, #f8ecd4 100%);
+}
+
+body {
+    min-height: 100dvh;
+    margin: 0;
+    font-family: 'Quicksand', sans-serif;
+    color: var(--text-main);
+    background: transparent;
+}
+
+.navbar {
+    background: linear-gradient(90deg, var(--ocean) 0%, #4cc9c0 45%, #7fded8 100%);
+    box-shadow: 0 8px 20px rgba(0, 127, 134, 0.2);
+}
+
+.navbar-item,
+.navbar-link,
+.navbar .button {
+    font-family: 'Fredoka', sans-serif;
+}
+
+.navbar-item,
+.navbar-item strong,
+.navbar-link {
+    color: #ffffff;
+}
+
+.navbar-item:hover,
+.navbar-link:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+.title,
+.title a {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--ocean-deep);
+}
+
+.subtitle {
+    color: #276877;
+}
+
+.button.is-primary {
+    background-color: var(--coral);
+    border-color: var(--coral);
+    color: #ffffff;
+}
+
+.button.is-primary:hover {
+    background-color: #ff6e5b;
+    border-color: #ff6e5b;
+}
+
+.button.is-light {
+    background-color: var(--sand);
+    color: #6b4b2a;
+    border: 1px solid #e9d9b3;
+}
+
+.input,
+.textarea,
+.select select {
+    border-color: #a2ddd7;
+    background-color: rgba(255, 255, 255, 0.88);
+}
+
+.input:focus,
+.textarea:focus,
+.select select:focus {
+    border-color: var(--ocean);
+    box-shadow: 0 0 0 0.125em rgba(0, 167, 160, 0.2);
+}
+
+.message.is-danger .message-body {
+    background: #fff1ee;
+    border-color: #ffc5bd;
+    color: #7d2c24;
+}
+
+.image img {
+    border: 4px solid #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Improve form readability on light gradients */
+.label {
+    color: #111111 !important;
+}
+
+.input,
+.textarea,
+.select select {
+    color: #111111;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: #444444;
+    opacity: 1;
+}
