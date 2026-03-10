@@ -6,6 +6,14 @@ exports.get_add = (request, response, next) => {
         response.render('new', {
             username: request.session.username || '',
             tipos: rows,
+            personaje: {
+                id: '',
+                nombre: '',
+                descripcion: '',
+                tipo_id: rows.length > 0 ? rows[0].id : '',
+                imagen: '',
+            },
+            editando: false,
         });
     }).catch((error) => {next(error)});
 };
@@ -30,6 +38,43 @@ exports.get_list = (request, response, next) => {
             username: request.session.username || '',
             personajes: rows,
         }); 
+    }).catch((error) => {
+        next(error);
+    });
+};
+
+exports.get_edit = (request, response, next) => {
+    Tipo.fetchAll().then(([rows, fieldData]) => {
+        Personaje.fetchOne(request.params.personaje_id).then(([personajes, fieldData2]) => {
+            if (personajes.length == 0) {
+                return response.status(404).send('El personaje no existe');
+            }
+
+            response.render('new', {
+                username: request.session.username || '',
+                tipos: rows,
+                personaje: personajes[0],
+                editando: true,
+            });
+        }).catch((error) => {
+            next(error);
+        });
+    }).catch((error) => {
+        next(error);
+    });
+};
+
+exports.post_edit = (request, response, next) => {
+    const personaje = new Personaje(
+        request.body.nombre,
+        request.body.descripcion,
+        request.body.tipo,
+        request.body.imagen,
+        request.body.personaje_id
+    );
+
+    personaje.update().then(() => {
+        return response.redirect('/personajes');
     }).catch((error) => {
         next(error);
     });

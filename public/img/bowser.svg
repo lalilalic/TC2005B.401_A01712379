@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <rect width="256" height="256" rx="40" fill="#66bb6a"/>
+  <circle cx="128" cy="104" r="56" fill="#8bc34a"/>
+  <path d="M72 92 96 54l12 28M184 92l-24-38-12 28" stroke="#fff8e1" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <circle cx="108" cy="102" r="7" fill="#1f1f1f"/>
+  <circle cx="148" cy="102" r="7" fill="#1f1f1f"/>
+  <path d="M104 132h48c-6 16-18 24-24 24s-18-8-24-24Z" fill="#fff3e0"/>
+  <rect x="72" y="164" width="112" height="34" rx="16" fill="#2e7d32"/>
+  <text x="128" y="228" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#ffffff">Bowser</text>
+</svg>

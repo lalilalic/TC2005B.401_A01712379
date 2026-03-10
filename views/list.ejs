@@ -13,7 +13,9 @@
 
                 <div class="column">
                     <a href="/personajes/<%= personaje.id %>"><%= personaje.nombre %></a>
-                    <figure class="image">
+                    <br>
+                    <a class="button is-small is-light" href="/personajes/edit/<%= personaje.id %>">Editar</a>
+                    <figure class="image is-128x128">
                         <img class="is-rounded" src="<%= personaje.imagen %>" />
                     </figure>
                 </div>

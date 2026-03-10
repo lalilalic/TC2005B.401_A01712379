@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preguntas SQL</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      color: #222;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .pregunta {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      color: #1f4e79;
+      font-size: 20px;
+    }
+
+    p {
+      margin-top: 10px;
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <h1>Respuestas sobre SQL</h1>
+
+  <div class="pregunta">
+    <h2>¿Qué ventajas tiene escribir el código SQL únicamente en la capa del modelo?</h2>
+    <p>
+      Escribir el código SQL únicamente en la capa del modelo ayuda a mantener una mejor organización del sistema,
+      ya que separa la lógica de acceso a datos de la interfaz y del controlador. Esto hace que el código sea más
+      fácil de entender, mantener y reutilizar. Además, permite que si la base de datos cambia o se necesita modificar
+      una consulta, el cambio se haga en un solo lugar sin afectar otras partes de la aplicación.
+    </p>
+  </div>
+
+  <div class="pregunta">
+    <h2>¿Qué es SQL injection y cómo se puede prevenir?</h2>
+    <p>
+      SQL injection es un ataque en el que una persona inserta código SQL malicioso en formularios o entradas de datos
+      para manipular la base de datos. Esto puede permitir ver, modificar o borrar información sin autorización.
+      Para prevenirlo, se deben usar consultas preparadas o parametrizadas, validar y limpiar las entradas del usuario,
+      y evitar construir consultas SQL concatenando texto directamente con los datos que escribe el usuario.
+    </p>
+  </div>
+</body>
+</html>

@@ -1,15 +1,18 @@
-<form action="/personajes/new" method="POST">
+<form action="/personajes/<%= editando ? 'edit' : 'new' %>" method="POST">
+    <% if (editando) { %>
+        <input type="hidden" name="personaje_id" value="<%= personaje.id %>">
+    <% } %>
     <div class="field">
         <label for="nombre" class="label">Nombre</label>
         <div class="control">
-            <input id="nombre" name="nombre" class="input" type="text" placeholder="e.g Vi">
+            <input id="nombre" name="nombre" class="input" type="text" placeholder="e.g Mario" value="<%= personaje.nombre %>">
         </div>
     </div>
 
     <div class="field">
         <label for="descripcion" class="label">Descripción</label>
         <div class="control">
-            <input id="descripcion" name="descripcion" class="input" type="text" placeholder="e.g. Criada en las calles salvajes de Zaun...">
+            <input id="descripcion" name="descripcion" class="input" type="text" placeholder="e.g. Heroe del Reino Champinon que rescata a Peach..." value="<%= personaje.descripcion %>">
         </div>
     </div>
 
@@ -17,7 +20,7 @@
         <div class="select">
             <select name="tipo" class="select">
                 <% for(let tipo of tipos) { %>
-                    <option value="<%= tipo.id %>"><%= tipo.tipo %></option>
+                    <option value="<%= tipo.id %>" <%= Number(personaje.tipo_id) === Number(tipo.id) ? 'selected' : '' %>><%= tipo.tipo %></option>
                 <% } %>
             </select>
         </div>
@@ -26,9 +29,9 @@
     <div class="field">
         <label for="imagen" class="label">Imagen</label>
         <div class="control">
-            <input id="imagen" name="imagen" class="input" type="text" placeholder="e.g. https://tooys.mx/media/catalog/product/cache/0daeb07bb1d294c1f281fab47369d56a/h/o/hot-toys-league-of-legends-vi-sixth-scale_0.jpg">
+            <input id="imagen" name="imagen" class="input" type="text" placeholder="e.g. https://example.com/mario.jpg" value="<%= personaje.imagen %>">
         </div>
     </div>
 
-    <input class="button is-primary" type="submit" value="Guardar personaje">
+    <input class="button is-primary" type="submit" value="<%= editando ? 'Guardar cambios' : 'Guardar personaje' %>">
 </form>
