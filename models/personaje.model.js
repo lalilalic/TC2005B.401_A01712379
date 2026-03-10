@@ -35,4 +35,11 @@ module.exports = class Personaje {
         }
     }
 
+    static edit(id, nombre, descripcion, tipo, imagen) {
+        return db.execute(
+            "UPDATE personajes SET nombre=?, descripcion=?, tipo_id=?, imagen=? WHERE id=?", 
+            [nombre, descripcion, tipo, imagen, id]
+        );
+    }
+
 }
