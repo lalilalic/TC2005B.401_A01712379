@@ -21,6 +21,13 @@ const csrf = require('csurf');
 const csrfProtection = csrf();
 app.use(csrfProtection); 
 
+app.use((request, response, next) => {
+    response.locals.csrfToken = request.csrfToken();
+    response.locals.username = request.session.username || '';
+    response.locals.isLoggedIn = request.session.isLoggedIn || false;
+    next();
+});
+
 const rutas_usuarios = require('./routes/users.routes');
 app.use('/users', rutas_usuarios);
 const rutas_personajes = require('./routes/personajes.routes');

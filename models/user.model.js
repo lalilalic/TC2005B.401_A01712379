@@ -1,5 +1,5 @@
 const db = require('../util/database');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 module.exports = class User {
 

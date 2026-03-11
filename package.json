@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/LauraA017/TC2005B.401_A01712379#readme",
   "dependencies": {
-    "bcrypt": "^6.0.0",
+    "bcryptjs": "^3.0.3",
     "body-parser": "^2.2.2",
     "csurf": "^1.11.0",
     "ejs": "^3.1.10",
