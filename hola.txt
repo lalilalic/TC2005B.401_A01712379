@@ -1,1 +1,1 @@
-Hola desde node
+Hola desde Node.js. Este archivo fue generado con fs.

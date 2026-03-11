@@ -1,132 +1,180 @@
-//document es el pretotipo que contiene el DOM (Document Object Model)
-//console.log(document);
-const gwen = {
-    nombre: "Gwen",
-    descripcion: `Gwen, una antigua muñeca que se transformó y cobró vida a través de la magia, 
-        usa las mismas herramientas que en su momento la crearon. 
-        Lleva el peso del amor de su creadora a cada paso, sin dar nada por sentado. 
-        Bajo su mando está la Niebla Sagrada, una magia antigua y protectora que bendijo las tijeras, 
-        las agujas y el hilo de coser de Gwen. Muchas cosas son nuevas para Gwen, 
-        pero sigue decidida a luchar con gozo por el bien que prevalece en un mundo roto.`,
-    tipo: "mago",
-    imagen: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gwen_0.jpg",
+const destinos = [
+  {
+    nombre: "Madrid",
+    pais: "Espana",
+    emoji: "🏛️",
+    resumen: "Una ciudad con mucha historia, plazas amplias y vida urbana muy activa.",
+    descripcion:
+      "Madrid fue uno de los destinos mas representativos del viaje. Destaco por su arquitectura, el ambiente en las calles y la mezcla entre cultura, comida y movimiento constante en la ciudad.",
+    color: "linear-gradient(135deg, #d66d75 0%, #e29587 100%)",
+    imagen: "/Madrid.png",
+    etiquetas: ["Ciudad", "Historia", "Europa"],
+  },
+  {
+    nombre: "Mallorca",
+    pais: "Espana",
+    emoji: "🏖️",
+    resumen: "Paisajes costeros, clima agradable y una atmosfera relajada frente al mar.",
+    descripcion:
+      "Mallorca sobresale por sus vistas al mar y por el contraste entre zonas tranquilas y espacios turisticos. Es un lugar ideal para descansar y recorrer paisajes naturales.",
+    color: "linear-gradient(135deg, #3a7bd5 0%, #7fd6ff 100%)",
+    imagen: "/Mallorca.png",
+    etiquetas: ["Playa", "Isla", "Descanso"],
+  },
+  {
+    nombre: "Marruecos",
+    pais: "Africa",
+    emoji: "🐪",
+    resumen: "Mercados, colores intensos y una experiencia cultural muy distinta.",
+    descripcion:
+      "Marruecos fue un destino muy llamativo por su identidad visual, sus calles y la experiencia cultural. Es un lugar que se recuerda por sus texturas, aromas y ambientes diferentes.",
+    color: "linear-gradient(135deg, #b24592 0%, #f15f79 100%)",
+    imagen: "/Marruecos.png",
+    etiquetas: ["Cultura", "Mercados", "Aventura"],
+  },
+  {
+    nombre: "Toronto",
+    pais: "Canada",
+    emoji: "🌆",
+    resumen: "Una ciudad moderna, ordenada y con un estilo cosmopolita.",
+    descripcion:
+      "Toronto deja una impresion de ciudad internacional, con edificios altos, espacios urbanos bien organizados y una energia muy distinta a otros destinos del viaje.",
+    color: "linear-gradient(135deg, #485563 0%, #29323c 100%)",
+    imagen: "/Toronto.png",
+    etiquetas: ["Urbano", "Canada", "Arquitectura"],
+  },
+  {
+    nombre: "San Miguel de Allende",
+    pais: "Mexico",
+    emoji: "⛪",
+    resumen: "Un destino con identidad colonial, color y mucho valor cultural.",
+    descripcion:
+      "San Miguel de Allende destaca por su estilo arquitectonico, sus calles y el ambiente tranquilo. Es un lugar con mucha personalidad y un caracter visual muy marcado.",
+    color: "linear-gradient(135deg, #c79081 0%, #dfa579 100%)",
+    imagen: "/San%20Miguel%20de%20Allende.png",
+    etiquetas: ["Colonial", "Mexico", "Cultura"],
+  },
+  {
+    nombre: "Waterloo",
+    pais: "Canada",
+    emoji: "🍁",
+    resumen: "Un lugar asociado con tranquilidad, estudio y un ritmo mas sereno.",
+    descripcion:
+      "Waterloo representa una experiencia mas calmada, con un entorno ordenado y una sensacion distinta a la de una gran metropoli. Tiene una imagen muy limpia y agradable.",
+    color: "linear-gradient(135deg, #4b79a1 0%, #7db7d8 100%)",
+    imagen: "/Waterloo.png",
+    etiquetas: ["Canada", "Tranquilo", "Recorrido"],
+  },
+  {
+    nombre: "CDMX",
+    pais: "Mexico",
+    emoji: "🌮",
+    resumen: "Una ciudad enorme, dinamica y llena de actividad en todo momento.",
+    descripcion:
+      "La Ciudad de Mexico ofrece una mezcla de movimiento, gastronomia, cultura y espacios emblematicos. Es un destino muy completo por la variedad de experiencias que concentra.",
+    color: "linear-gradient(135deg, #134e5e 0%, #71b280 100%)",
+    etiquetas: ["Ciudad", "Gastronomia", "Mexico"],
+  },
+];
+
+const contenedorDestinos = document.getElementById("destinos");
+const contenedorSellos = document.getElementById("travel-stamps");
+const contenidoModal = document.getElementById("contenido_modal");
+
+function renderizarSellos() {
+  contenedorSellos.innerHTML = destinos
+    .map((destino) => `<span class="stamp">${destino.nombre}</span>`)
+    .join("");
 }
 
-const mordekaiser = {
-    nombre: "Mordekaiser",
-    descripcion: `Mordekaiser es un señor de la guerra nigromante que domina el carril superior con 
-        daño mágico sostenido, gran aguante y una definitiva que aísla a enemigos en su "reino de la muerte". 
-        Destaca por su pasiva de daño en área, su maza Ocaso y su capacidad para robar estadísticas, 
-        siendo popular por su contundencia.`,
-    tipo: "tanque",
-    imagen: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Mordekaiser_0.jpg",
+function abrirModal() {
+  document.getElementById("modal-destino").classList.add("is-active");
 }
 
-const jax = {
-    nombre: "Jax",
-    descripcion: `Inigualable tanto en sus habilidades de armamentos únicos como en su mordaz sarcasmo, 
-    Jax es el último maestro de armas conocido de Icathia. 
-    Después de que su tierra natal fue destruida por su propia arrogancia al desencadenar el Vacío, 
-    Jax y su especie juraron proteger lo poco que quedó. Mientras la magia aumenta en el mundo, 
-    la amenaza durmiente se agita una vez más, y Jax vaga por Valoran, portando la última luz de 
-    Icathia y poniendo a prueba a todos los guerreros que conoce para ver si son suficientemente 
-    fuertes para erguirse a su lado...`,
-    tipo: "tanque",
-    imagen: "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jax_0.jpg",
+function cerrarModal() {
+  document.getElementById("modal-destino").classList.remove("is-active");
 }
 
-const div_gwen = document.getElementById("gwen");
-console.log(div_gwen);
+function mostrarDestinoEnModal(destino) {
+  contenidoModal.innerHTML = `
+    <p class="title is-3 mb-2">${destino.emoji} ${destino.nombre}</p>
+    <p class="subtitle is-6 mb-4">${destino.pais}</p>
+    <div class="mb-4">
+      ${destino.etiquetas.map((etiqueta) => `<span class="tag is-light">${etiqueta}</span>`).join("")}
+    </div>
+    <p class="mb-3">${destino.descripcion}</p>
+    <p class="has-text-grey">${destino.resumen}</p>
+  `;
 
-const mostrar_datos = () => {
-    div_gwen.innerHTML = `
-        <p class="is-size-2">${gwen.nombre}</p>
-        <p>${gwen.descripcion}</p>
-        <span class="tag">${gwen.tipo}</span>
-    `;
-    div_gwen.onclick = mostrar_imagen;
+  abrirModal();
 }
 
-const mostrar_imagen = () => {
-    div_gwen.innerHTML = `
-        <figure class="image">
-            <img class="is-rounded" src="${gwen.imagen}" />
-        </figure>
-    `;
-    div_gwen.onclick = mostrar_datos;
-}
+function crearTarjeta(destino) {
+  const tarjeta = document.createElement("button");
+  tarjeta.className = "travel-card";
+  tarjeta.type = "button";
+  const visualClass = destino.imagen ? "travel-visual has-image" : "travel-visual";
+  const visualContenido = destino.imagen
+    ? `
+    <img class="travel-photo" src="${destino.imagen}" alt="${destino.nombre}">
+    <div class="travel-overlay"></div>
+    <div class="travel-visual-inner">
+      <span class="travel-country">${destino.pais}</span>
+      <span class="travel-emoji">${destino.emoji}</span>
+    </div>
+  `
+    : `
+    <div class="travel-visual-inner">
+      <span class="travel-country">${destino.pais}</span>
+      <span class="travel-emoji">${destino.emoji}</span>
+    </div>
+  `;
 
-mostrar_imagen();
+  tarjeta.innerHTML = `
+    <div class="${visualClass}" style="background:${destino.color}">
+      ${visualContenido}
+    </div>
+    <div class="travel-content">
+      <p class="title is-4 mb-2">${destino.nombre}</p>
+      <p>${destino.resumen}</p>
+    </div>
+  `;
 
-div_gwen.onclick = mostrar_datos;
-
-document.addEventListener('DOMContentLoaded', () => {
-  // Functions to open and close a modal
-  function openModal($el) {
-    $el.classList.add('is-active');
-  }
-
-  function closeModal($el) {
-    $el.classList.remove('is-active');
-  }
-
-  function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-      closeModal($modal);
-    });
-  }
-
-  // Add a click event on buttons to open a specific modal
-  (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
-
-    $trigger.addEventListener('click', () => {
-      openModal($target);
-    });
+  tarjeta.addEventListener("click", () => {
+    mostrarDestinoEnModal(destino);
   });
 
-  // Add a click event on various child elements to close the parent modal
-  (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
-
-    $close.addEventListener('click', () => {
-      closeModal($target);
+  const imagen = tarjeta.querySelector(".travel-photo");
+  if (imagen) {
+    imagen.addEventListener("error", () => {
+      imagen.remove();
+      const overlay = tarjeta.querySelector(".travel-overlay");
+      if (overlay) {
+        overlay.remove();
+      }
     });
+  }
+
+  return tarjeta;
+}
+
+function renderizarDestinos() {
+  destinos.forEach((destino) => {
+    contenedorDestinos.appendChild(crearTarjeta(destino));
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderizarSellos();
+  renderizarDestinos();
+
+  document.querySelectorAll(".modal-background, .modal-close").forEach((elemento) => {
+    elemento.addEventListener("click", cerrarModal);
   });
 
-  // Add a keyboard event to close all modals
-  document.addEventListener('keydown', (event) => {
-    if(event.key === "Escape") {
-      closeAllModals();
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      cerrarModal();
     }
   });
 });
-
-document.getElementById("contenido_modal").innerHTML = `
-    <p class="is-size-2">${mordekaiser.nombre}</p>
-    <p>${mordekaiser.descripcion}</p>
-    <span class="tag">${mordekaiser.tipo}</span>
-`;
-
-const div_jax = document.getElementById("jax");
-
-const mostrar_datos_jax = () => {
-    div_jax.innerHTML = `
-        <p class="is-size-2">${jax.nombre}</p>
-        <p>${jax.descripcion}</p>
-        <span class="tag">${jax.tipo}</span>
-    `;
-}
-
-const mostrar_imagen_jax = () => {
-    div_jax.innerHTML = `
-        <figure class="image">
-            <img class="is-rounded" src="${jax.imagen}" />
-        </figure>
-    `;
-}
-
-mostrar_imagen_jax();
-div_jax.onmouseover = mostrar_datos_jax;
-div_jax.onmouseleave = mostrar_imagen_jax;
