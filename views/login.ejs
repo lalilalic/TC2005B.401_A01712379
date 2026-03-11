@@ -1,22 +1,31 @@
 <%- include('includes/_header') %>
 <%- include('includes/_error') %>
 
-<form action="/users/login" method="POST">
-    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-    <div class="field">
-        <label for="username" class="label">Nombre de usuario</label>
-        <div class="control">
-            <input id="username" name="username" class="input" type="text" placeholder="e.g Vi" required>
+<div class="columns is-centered">
+    <div class="column is-6-desktop is-8-tablet">
+        <div class="form-panel">
+            <h2 class="section-title">Acceso de usuarios</h2>
+            <p class="section-copy">Ingresa con tus credenciales para administrar el sistema.</p>
+
+            <form action="/users/login" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                <div class="field">
+                    <label for="username" class="label">Nombre de usuario</label>
+                    <div class="control">
+                        <input id="username" name="username" class="input" type="text" placeholder="Ej. admin.lab18" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="password" class="label">Password</label>
+                    <div class="control">
+                        <input id="password" name="password" class="input" type="password" required>
+                    </div>
+                </div>
+
+                <input class="button is-primary" type="submit" value="Entrar al sistema">
+            </form>
         </div>
     </div>
-
-    <div class="field">
-        <label for="password" class="label">Password</label>
-        <div class="control">
-            <input id="password" name="password" class="input" type="password" required>
-        </div>
-    </div>
-
-    <input class="button is-primary" type="submit" value="Entrar">
-</form>
+</div>
 <%- include('includes/_footer') %>

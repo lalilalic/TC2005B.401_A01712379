@@ -1,43 +1,52 @@
 <%- include('includes/_header') %>
 <%- include('includes/_error') %>
 
-<form action="/users/signup" method="POST">
-    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-    <div class="field">
-        <label for="username" class="label">Nombre de usuario</label>
-        <div class="control">
-            <input id="username" name="username" class="input" type="text" placeholder="e.g Vi" required>
+<div class="columns is-centered">
+    <div class="column is-7-desktop is-9-tablet">
+        <div class="form-panel">
+            <h2 class="section-title">Registro de cuenta</h2>
+            <p class="section-copy">Da de alta un nuevo usuario con credenciales seguras para operar la plataforma.</p>
+
+            <form action="/users/signup" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                <div class="field">
+                    <label for="username" class="label">Nombre de usuario</label>
+                    <div class="control">
+                        <input id="username" name="username" class="input" type="text" placeholder="Ej. laura.admin" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="nombre" class="label">Nombre</label>
+                    <div class="control">
+                        <input id="nombre" name="nombre" class="input" type="text" placeholder="Nombre completo" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="correo" class="label">Correo</label>
+                    <div class="control">
+                        <input id="correo" name="correo" class="input" type="email" placeholder="correo@empresa.com" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="password" class="label">Password</label>
+                    <div class="control">
+                        <input id="password" name="password" class="input" type="password" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="password_confirm" class="label">Confirmar password</label>
+                    <div class="control">
+                        <input id="password_confirm" name="password_confirm" class="input" type="password" required>
+                    </div>
+                </div>
+
+                <input class="button is-primary" type="submit" value="Crear cuenta">
+            </form>
         </div>
     </div>
-
-    <div class="field">
-        <label for="nombre" class="label">Nombre</label>
-        <div class="control">
-            <input id="nombre" name="nombre" class="input" type="text" placeholder="e.g Lucca" required>
-        </div>
-    </div>
-
-    <div class="field">
-        <label for="correo" class="label">Correo</label>
-        <div class="control">
-            <input id="correo" name="correo" class="input" type="email" placeholder="e.g umpa_lucca@gmail.com" required>
-        </div>
-    </div>
-
-    <div class="field">
-        <label for="password" class="label">Password</label>
-        <div class="control">
-            <input id="password" name="password" class="input" type="password" required>
-        </div>
-    </div>
-
-    <div class="field">
-        <label for="password_confirm" class="label">Confirmar Password</label>
-        <div class="control">
-            <input id="password_confirm" name="password_confirm" class="input" type="password" required>
-        </div>
-    </div>
-
-    <input class="button is-primary" type="submit" value="Entrar">
-</form>
+</div>
 <%- include('includes/_footer') %>

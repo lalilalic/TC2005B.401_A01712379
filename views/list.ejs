@@ -1,29 +1,30 @@
 <%- include('includes/_header') %>
 
-        <a class="button is-primary" href="/personajes/new">Nuevo personaje</a>
-        <div class="columns">
-
-        <% if(personajes.length == 0) { %>
-            <div class="column">
-                No hay personajes registrados.
-            </div>
-        <% } else { %>
-
-            <% for (let personaje of personajes) { %>
-
-                <div class="column">
-                    <a href="/personajes/<%= personaje.id %>"><%= personaje.nombre %></a>
-                    <figure class="image">
-                        <img class="is-rounded" src="<%= personaje.imagen %>" />
-                    </figure>
+        <div class="content-panel">
+            <div class="action-row">
+                <div>
+                    <h2 class="section-title">Catalogo de personajes</h2>
+                    <p class="section-copy">Consulta y administra los registros disponibles dentro de la plataforma.</p>
                 </div>
-                    
-            <% } %>
-            
-        <% } %>
+                <a class="button is-primary" href="/personajes/new">Nuevo personaje</a>
+            </div>
 
+            <% if(personajes.length == 0) { %>
+                <div class="empty-panel">
+                    No hay personajes registrados.
+                </div>
+            <% } else { %>
+                <div class="catalog-grid">
+                <% for (let personaje of personajes) { %>
+                    <article class="champion-card">
+                        <a class="champion-link" href="/personajes/<%= personaje.id %>"><%= personaje.nombre %></a>
+                        <figure class="champion-image">
+                            <img src="<%= personaje.imagen %>" alt="<%= personaje.nombre %>" />
+                        </figure>
+                    </article>
+                <% } %>
+                </div>
+            <% } %>
         </div>
-    </div>
-</section>
 
 <%- include('includes/_footer') %>
