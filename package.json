@@ -10,21 +10,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ejuarezp/tc2005b_lol.git"
+    "url": "git+https://github.com/LauraA017/TC2005B.401_A01712379.git"
   },
   "keywords": [
     "node",
     "lol",
     "express"
   ],
-  "author": "Eduardo Juárez",
+  "author": "LauraA017",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ejuarezp/tc2005b_lol/issues"
+    "url": "https://github.com/LauraA017/TC2005B.401_A01712379/issues"
   },
-  "homepage": "https://github.com/ejuarezp/tc2005b_lol#readme",
+  "homepage": "https://github.com/LauraA017/TC2005B.401_A01712379#readme",
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "body-parser": "^2.2.2",
-    "express": "^5.2.1"
+    "csurf": "^1.11.0",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "express-session": "^1.18.2",
+    "mysql2": "^3.15.1"
   }
 }
