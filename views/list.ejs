@@ -1,30 +1,49 @@
 <%- include('includes/_header') %>
 
+<% let puede_crear = false; %>
+<% let puede_editar = false; %>
 <% for (let permiso of permisos) { %>
     <% if (permiso.nombre_privilegio == 'crear_personajes') { %>
-        <a class="button is-primary" href="/personajes/new">Nuevo personaje</a>
+        <% puede_crear = true; %>
+    <% } %>
+    <% if (permiso.nombre_privilegio == 'editar_personajes') { %>
+        <% puede_editar = true; %>
     <% } %>
 <% } %>
 
-        <div class="columns">
+<% if (puede_crear) { %>
+    <a class="button is-primary section-action" href="/personajes/new">Nuevo destino</a>
+<% } %>
+
+<% if (personajes.length == 1) { %>
+    <a class="button is-link section-action" href="/personajes">Ver todos los destinos</a>
+<% } %>
+
+        <div class="characters-grid">
 
         <% if(personajes.length == 0) { %>
-            <div class="column">
-                No hay personajes registrados.
+            <div class="character-empty">
+                No hay destinos registrados.
             </div>
         <% } else { %>
 
             <% for (let personaje of personajes) { %>
 
-                <div class="column">
-                    <a href="/personajes/<%= personaje.id %>"><%= personaje.nombre %></a>
-                    <figure class="image">
-                        <img class="is-rounded" src="<%= personaje.imagen %>" />
-                    </figure>
-                    <a class="button is-primary" href="/personajes/<%= personaje.id %>/edit">
-                        <span>Editar</span>
+                <article class="character-card">
+                    <a class="character-link" href="/personajes/<%= personaje.id %>">
+                        <figure class="image character-image">
+                            <img class="is-rounded <% if (personaje.nombre == 'Mallorca, España' || personaje.nombre == 'Marruecos') { %>character-image-centered<% } %>" src="<%= personaje.imagen %>" />
+                        </figure>
+                        <h2 class="character-name"><%= personaje.nombre %></h2>
                     </a>
-                </div>
+                    <div class="character-actions">
+                    <% if (puede_editar) { %>
+                        <a class="button is-primary" href="/personajes/<%= personaje.id %>/edit">
+                            <span>Editar</span>
+                        </a>
+                    <% } %>
+                    </div>
+                </article>
                     
             <% } %>
             

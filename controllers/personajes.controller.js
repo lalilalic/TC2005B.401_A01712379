@@ -6,6 +6,7 @@ exports.get_add = (request, response, next) => {
         response.render('new', {
             edit: false,
             csrfToken: request.csrfToken(),
+            permisos: request.session.permisos || [],
             username: request.session.username || '',
             tipos: rows,
         });
@@ -46,6 +47,7 @@ exports.get_edit = (request, response, next) => {
                 edit: true,
                 personaje: personaje[0],
                 csrfToken: request.csrfToken(),
+                permisos: request.session.permisos || [],
                 username: request.session.username || '',
                 tipos: rows,
             });

@@ -1,0 +1,99 @@
+<%- include('includes/_header') %>
+
+<div class="rbac-layout">
+    <section class="rbac-panel rbac-panel-highlight">
+        <span class="rbac-eyebrow">Concepto</span>
+        <h2 class="rbac-title">¿En qué consiste el control de acceso basado en roles?</h2>
+        <p class="rbac-lead">
+            El control de acceso basado en roles, o RBAC, es un modelo de seguridad en el que
+            los permisos no se asignan directamente a cada usuario, sino a roles. Después,
+            esos roles se asignan a los usuarios.
+        </p>
+        <div class="rbac-grid">
+            <div class="rbac-mini-card">
+                <h3>Cómo funciona</h3>
+                <p>
+                    Una persona hereda permisos como ver, crear, editar o administrar
+                    secciones de la aplicación según el rol que tenga dentro del sistema.
+                </p>
+            </div>
+            <div class="rbac-mini-card">
+                <h3>Por qué se usa</h3>
+                <p>
+                    Simplifica la administración, evita duplicar configuraciones y facilita
+                    la auditoría de las acciones que puede realizar cada tipo de usuario.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="rbac-comparison">
+        <section class="rbac-panel">
+            <span class="rbac-badge">Con RBAC</span>
+            <h2 class="rbac-section-title">Sistema que sí aplica RBAC</h2>
+            <p>
+                Un ejemplo claro es un sistema hospitalario. Puede existir el rol de médico,
+                enfermería, recepción y administrador. Cada rol tiene permisos distintos:
+                recepción agenda citas, enfermería captura signos vitales, el médico consulta y
+                actualiza expedientes clínicos, y el administrador gestiona usuarios y catálogos.
+            </p>
+            <div class="rbac-list-block">
+                <h3>Ventajas</h3>
+                <ul>
+                    <li>Administración centralizada.</li>
+                    <li>Menor probabilidad de errores al asignar permisos.</li>
+                    <li>Facilidad para escalar cuando hay muchos usuarios.</li>
+                    <li>Mejor control para auditoría.</li>
+                </ul>
+            </div>
+            <div class="rbac-list-block">
+                <h3>Desventajas</h3>
+                <ul>
+                    <li>Si los roles se diseñan mal pueden quedarse rígidos.</li>
+                    <li>En casos muy específicos puede ser necesario crear más roles o reglas adicionales.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="rbac-panel">
+            <span class="rbac-badge rbac-badge-soft">Sin RBAC</span>
+            <h2 class="rbac-section-title">Sistema que no aplica RBAC</h2>
+            <p>
+                Un ejemplo es una aplicación pequeña donde cada permiso se asigna usuario por
+                usuario de forma directa, sin roles intermedios. En ese caso, para autorizar una
+                acción como crear, editar o eliminar, el sistema revisa banderas particulares de
+                cada cuenta.
+            </p>
+            <div class="rbac-list-block">
+                <h3>Ventajas</h3>
+                <ul>
+                    <li>Puede ser simple al inicio.</li>
+                    <li>Sirve en sistemas muy pequeños con pocos usuarios y reglas mínimas.</li>
+                    <li>Da control directo usuario por usuario.</li>
+                </ul>
+            </div>
+            <div class="rbac-list-block">
+                <h3>Desventajas</h3>
+                <ul>
+                    <li>El mantenimiento se vuelve difícil.</li>
+                    <li>Aumenta la inconsistencia entre usuarios.</li>
+                    <li>Es más tardado cambiar permisos a grupos grandes.</li>
+                    <li>Se complica auditar por qué una persona tiene acceso a cierta función.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <section class="rbac-panel rbac-panel-summary">
+        <span class="rbac-eyebrow">Conclusión</span>
+        <h2 class="rbac-section-title">Análisis comparativo</h2>
+        <p>
+            Con RBAC, el control de acceso es más ordenado, reusable y administrable. Sin
+            RBAC, el sistema puede empezar más rápido, pero pierde trazabilidad y escala mal.
+            Por eso, en aplicaciones web con varios perfiles de usuario, RBAC suele ser una
+            mejor decisión.
+        </p>
+    </section>
+</div>
+
+<%- include('includes/_footer') %>

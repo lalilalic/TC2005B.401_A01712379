@@ -9,7 +9,7 @@
     <div class="field">
         <label for="nombre" class="label">Nombre</label>
         <div class="control">
-            <input id="nombre" name="nombre" class="input" type="text" placeholder="e.g Vi" 
+            <input id="nombre" name="nombre" class="input" type="text" placeholder="e.g. Santorini, Grecia" 
                 value="<% if(edit) { %><%= personaje.nombre %><% } %>"
             >
         </div>
@@ -19,15 +19,16 @@
         <label for="descripcion" class="label">Descripción</label>
         <div class="control">
             <input id="descripcion" name="descripcion" class="input" type="text" 
-                placeholder="e.g. Criada en las calles salvajes de Zaun..."
+                placeholder="e.g. Un destino costero ideal para caminar entre calles blancas y vistas al mar."
                 value="<% if(edit) { %><%= personaje.descripcion %><% } %>"
             >
         </div>
     </div>
 
     <div class="field">
+        <label for="tipo" class="label">Tipo de viaje</label>
         <div class="select">
-            <select name="tipo" class="select">
+            <select id="tipo" name="tipo" class="select">
                 <% for(let tipo of tipos) { %>
                     <option value="<%= tipo.id %>" 
                         <% if(edit) { %>
@@ -47,11 +48,11 @@
         <label for="imagen" class="label">Imagen</label>
         <div class="control">
             <input id="imagen" name="imagen" class="input" type="text" 
-                placeholder="e.g. https://tooys.mx/media/catalog/product/cache/0daeb07bb1d294c1f281fab47369d56a/h/o/hot-toys-league-of-legends-vi-sixth-scale_0.jpg"
+                placeholder="e.g. https://images.unsplash.com/..."
                 value="<% if(edit) { %><%= personaje.imagen %><% } %>"
             >
         </div>
     </div>
 
-    <input class="button is-primary" type="submit" value="Guardar personaje">
+    <input class="button is-primary" type="submit" value="Guardar destino">
 </form>

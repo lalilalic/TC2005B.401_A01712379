@@ -41,10 +41,10 @@ CREATE TABLE `personajes` (
 --
 
 INSERT INTO `personajes` (`id`, `nombre`, `descripcion`, `tipo_id`, `imagen`, `created_at`) VALUES
-(1, 'Gwen', 'Gwen, una antigua muñeca que se transformó y cobró vida a través de la magia, usa las mismas herramientas que en su momento la crearon. Lleva el peso del amor de su creadora a cada paso, sin dar nada por sentado. Bajo su mando está la Niebla Sagrada, una magia antigua y protectora que bendijo las tijeras, las agujas y el hilo de coser de Gwen. Muchas cosas son nuevas para Gwen, pero sigue decidida a luchar con gozo por el bien que prevalece en un mundo roto.', 2, 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Gwen_0.jpg', '2026-03-05 18:13:22'),
-(2, 'Mordekaiser', 'Mordekaiser es un señor de la guerra nigromante que domina el carril superior con daño mágico sostenido, gran aguante y una definitiva que aísla a enemigos en su \"reino de la muerte\". Destaca por su pasiva de daño en área, su maza Ocaso y su capacidad para robar estadísticas, siendo popular por su contundencia.', 3, 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Mordekaiser_0.jpg', '2026-03-05 18:13:22'),
-(3, 'Jax', 'Inigualable tanto en sus habilidades de armamentos únicos como en su mordaz sarcasmo, Jax es el último maestro de armas conocido de Icathia. Después de que su tierra natal fue destruida por su propia arrogancia al desencadenar el Vacío, Jax y su especie juraron proteger lo poco que quedó. Mientras la magia aumenta en el mundo, la amenaza durmiente se agita una vez más, y Jax vaga por Valoran.', 1, 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Jax_0.jpg', '2026-03-05 18:16:09'),
-(4, 'Ekko', 'Ekko es un prodigio que creció en las duras calles de Zaun. Con el Pulsar-Z, un dispositivo de su propia invención, Ekko puede explorar las múltiples posibilidades de la realidad para crear el momento perfecto. Al manipular el tiempo de tal forma, este joven logra lo imposible aparentemente al primer intento.', 2, 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ekko_0.jpg', '2026-03-05 18:44:10');
+(1, 'San Miguel de Allende, México', 'Una ciudad con calles empedradas, arquitectura colonial, ambiente cultural y rincones ideales para una escapada con mucho encanto.', 4, '/img/San Miguel de Allende.png', '2026-03-05 18:13:22'),
+(2, 'Marruecos', 'Un destino lleno de color, mercados tradicionales, arquitectura única y experiencias culturales que combinan ciudad, desierto y tradición.', 4, '/img/Marruecos.png', '2026-03-05 18:13:22'),
+(3, 'Sierra Nevada', 'Una excelente opción para quienes quieren montañas, aire libre, paisajes nevados y actividades de naturaleza durante varias temporadas del año.', 2, '/img/Sierra Nevada.png', '2026-03-05 18:16:09'),
+(4, 'París, Francia', 'Una ciudad clásica para recorrer museos, avenidas emblemáticas, cafeterías y rincones históricos en una experiencia urbana inolvidable.', 3, '/img/Paris.png', '2026-03-05 18:44:10');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,11 @@ CREATE TABLE `posee` (
 INSERT INTO `posee` (`id_rol`, `id_privilegio`, `created_at`) VALUES
 (1, 1, '2026-03-10 18:03:48'),
 (2, 1, '2026-03-10 18:03:59'),
-(2, 2, '2026-03-10 18:03:59');
+(2, 2, '2026-03-10 18:03:59'),
+(2, 3, '2026-03-10 18:03:59'),
+(2, 4, '2026-03-10 18:03:59'),
+(3, 1, '2026-03-10 18:05:10'),
+(3, 3, '2026-03-10 18:05:10');
 
 -- --------------------------------------------------------
 
@@ -85,7 +89,9 @@ CREATE TABLE `privilegios` (
 
 INSERT INTO `privilegios` (`id`, `nombre_privilegio`, `created_at`) VALUES
 (1, 'ver_personajes', '2026-03-10 18:03:32'),
-(2, 'crear_personajes', '2026-03-10 18:03:32');
+(2, 'crear_personajes', '2026-03-10 18:03:32'),
+(3, 'editar_personajes', '2026-03-10 18:03:32'),
+(4, 'administrar_rbac', '2026-03-10 18:03:32');
 
 -- --------------------------------------------------------
 
@@ -105,7 +111,8 @@ CREATE TABLE `roles` (
 
 INSERT INTO `roles` (`id`, `nombre_rol`, `created_at`) VALUES
 (1, 'invocador', '2026-03-10 18:03:16'),
-(2, 'administrador', '2026-03-10 18:03:16');
+(2, 'administrador', '2026-03-10 18:03:16'),
+(3, 'editor', '2026-03-10 18:03:16');
 
 -- --------------------------------------------------------
 
@@ -125,7 +132,8 @@ CREATE TABLE `tiene` (
 
 INSERT INTO `tiene` (`id_usuario`, `id_rol`, `created_at`) VALUES
 ('joel123', 2, '2026-03-10 18:04:19'),
-('valentino123', 1, '2026-03-10 18:04:19');
+('valentino123', 1, '2026-03-10 18:04:19'),
+('jinx123', 3, '2026-03-10 18:04:19');
 
 -- --------------------------------------------------------
 
@@ -143,10 +151,10 @@ CREATE TABLE `tipo` (
 --
 
 INSERT INTO `tipo` (`id`, `tipo`) VALUES
-(1, 'peleador'),
-(2, 'mago'),
-(3, 'tanque'),
-(4, 'asesino');
+(1, 'playa'),
+(2, 'naturaleza'),
+(3, 'ciudad'),
+(4, 'cultural');
 
 -- --------------------------------------------------------
 
@@ -168,7 +176,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`username`, `nombre`, `password`, `correo`, `created_at`) VALUES
 ('joel123', 'Joel García', '$2b$12$Trhu5g8emvTgIH577h4XuO0vT3t97RPbDe6ZduHrADdgepTYc0Nha', 'joeleoj@gmail.com', '2026-03-09 17:59:37'),
-('valentino123', 'Valentino Ortiz', '$2b$12$y1YnQcptunQlg7zaBm0P3Oc9B4hMjB/E2VOMRL3xaZxLcEvAAQVtC', 'valentinoortiz@gmail.com', '2026-03-09 18:01:33');
+('valentino123', 'Valentino Ortiz', '$2b$12$y1YnQcptunQlg7zaBm0P3Oc9B4hMjB/E2VOMRL3xaZxLcEvAAQVtC', 'valentinoortiz@gmail.com', '2026-03-09 18:01:33'),
+('jinx123', 'Jinx Piltover', '$2b$12$Trhu5g8emvTgIH577h4XuO0vT3t97RPbDe6ZduHrADdgepTYc0Nha', 'jinx@gmail.com', '2026-03-09 18:04:33');
 
 --
 -- Indexes for dumped tables
@@ -233,13 +242,13 @@ ALTER TABLE `personajes`
 -- AUTO_INCREMENT for table `privilegios`
 --
 ALTER TABLE `privilegios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tipo`

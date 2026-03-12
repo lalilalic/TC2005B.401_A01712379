@@ -26,6 +26,10 @@ app.use('/users', rutas_usuarios);
 const rutas_personajes = require('./routes/personajes.routes');
 app.use('/personajes', rutas_personajes);
 
+app.get('/', (request, response, next) => {
+    response.redirect('/users/info');
+});
+
 app.use((error, request, response, next) => {
     response.status(500).send(`Error interno del servidor: ${error.stack}`);
 });
