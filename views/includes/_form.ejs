@@ -1,8 +1,8 @@
 <% if (edit) { %>
-    <form action="/personajes/edit" method="POST">
+    <form action="/personajes/edit" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<%= personaje.id %>">
 <% } else { %>
-    <form action="/personajes/new" method="POST">
+    <form action="/personajes/new" method="POST" enctype="multipart/form-data">
 <% } %>
 
     <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
@@ -46,7 +46,7 @@
     <div class="field">
         <label for="imagen" class="label">Imagen</label>
         <div class="control">
-            <input id="imagen" name="imagen" class="input" type="text" 
+            <input id="imagen" name="imagen" class="input" type="file" 
                 placeholder="e.g. https://tooys.mx/media/catalog/product/cache/0daeb07bb1d294c1f281fab47369d56a/h/o/hot-toys-league-of-legends-vi-sixth-scale_0.jpg"
                 value="<% if(edit) { %><%= personaje.imagen %><% } %>"
             >
