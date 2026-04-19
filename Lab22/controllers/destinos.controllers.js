@@ -49,3 +49,22 @@ exports.get_list = (request, response, next) => {
         next(error);
     });
 };
+
+// Muestra el formulario de edición con los datos actuales del destino
+exports.get_edit = (request, response, next) => {
+    // Primero buscamos el destino que se quiere editar
+    Destino.fetchOne(request.params.destino_id).then(([destino, fieldData]) => {
+        console.log(destino[0]); // Verificamos que encontró el destino correcto
+
+        // Luego traemos los continentes para el select del formulario
+        Continente.fetchAll().then(([rows, fieldData]) => {
+            response.render('new', {
+                edit: true,           // Le decimos a la vista que es edición
+                destino: destino[0],  // Los datos actuales del destino
+                csrfToken: request.csrfToken(),
+                username: request.session.username || '',
+                continentes: rows,    // Continentes para el select
+            });
+        }).catch((error) => {next(error)});
+    }).catch((error) => {next(error)});
+};
