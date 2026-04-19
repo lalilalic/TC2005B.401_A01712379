@@ -21,11 +21,11 @@ exports.post_login = (request, response, next) => {
     User.fetchOne(request.body.username).then(([usuarios, fieldData]) => {
 
         if (usuarios.length > 0) {
-            // Si existe el usuario, comparamos la contraseña ingresada con la encriptada en BD
+            // Si existe el usuario se comparam la contraseña ingresada con la encriptada en BD
             bcrypt.compare(request.body.password, usuarios[0].password).then((doMatch) => {
                 
                 if(doMatch) {
-                    // Contraseña correcta: guardamos en sesión que está logueado
+                    // Contraseña correcta lo guardamos en sesión que está logueado
                     request.session.isLoggedIn = true;
                     request.session.username = request.body.username;
 
@@ -41,9 +41,9 @@ exports.post_login = (request, response, next) => {
                         console.log(error);
                         next(error);
                     });
-                    
+
               } else {
-                    // Contraseña incorrecta: mandamos error y regresamos al login
+                    // Contraseña incorrecta se lo mandamos error y regresamos al login
                     request.session.error = "Usuario y/o contraseña no coinciden";
                     return response.redirect('/users/login');
                 }
@@ -53,7 +53,7 @@ exports.post_login = (request, response, next) => {
             });
 
         } else {
-            // Usuario no encontrado: mismo mensaje para no revelar si existe o no
+            // Usuario no encontrado por ello el mismo mensaje para no revelar si existe o no
             request.session.error = "Usuario y/o contraseña no coinciden";
             return response.redirect('/users/login');
         }
@@ -61,4 +61,50 @@ exports.post_login = (request, response, next) => {
         console.log(error);
         next(error);
     });
+};
+
+// Cierra la sesión del usuario eliminando todos sus datos de sesión
+exports.get_logout = (request, response, next) => {
+    request.session.destroy(() => {
+        // Una vez destruida la sesión, mandamos al login
+        response.redirect('/users/login');
+    });
+};
+
+// Muestra el formulario de registro de nuevo usuario
+exports.get_signup = (request, response, next) => {
+    // Recuperamos error de sesión  y luego  limpiamos
+    const error = request.session.error || '';
+    request.session.error = '';
+
+    response.render('signup', {
+        csrfToken: request.csrfToken(),
+        username: request.session.username || '',
+        error: error,
+    });
+};
+
+// Recibe los datos del formulario de registro y crea el nuevo usuario
+exports.post_signup = (request, response, next) => {
+    // Validamos que las contraseñas coincidan antes de guardar
+    if (request.body.password != request.body.password_confirm) {
+        request.session.error = 'Las contraseñas no coinciden';
+        return response.redirect('/users/signup');
+    } else {
+        // Creamos el objeto User con los datos del formulario
+        const user = new User(
+            request.body.username,  // Nombre de usuario único
+            request.body.nombre,    // Nombre real del usuario
+            request.body.password,  // Contraseña (el modelo se encarga de encriptarla)
+            request.body.correo     // Correo electrónico
+        );
+
+        // Guardamos el usuario y redirigimos al login para que inicie sesión
+        user.save().then(() => {
+            return response.redirect('/users/login');
+        }).catch((error) => {
+            console.log(error);
+            next(error);
+        });
+    }
 };
