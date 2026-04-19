@@ -1,0 +1,134 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica", "Arial", sans-serif;
+    background: #fdfaf7;
+}
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    background: #fdfaf7;
+    border-bottom: 0.5px solid #e8ddd3;
+}
+.nav a {
+    font-size: 0.85rem;
+    color: #8a7060;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+.nav a:hover {
+    color: #3a2e26;
+}
+.hero {
+    background: #f5efe8;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    border-bottom: 0.5px solid #e8ddd3;
+}
+.hero-title {
+    font-family: "Playfair Display", serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: #3a2e26;
+}
+.hero-sub {
+    font-size: 1rem;
+    color: #8a7060;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+.section {
+    padding: 2rem;
+}
+.section-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #3a2e26;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+.card {
+    background: #fdfaf7;
+    border: 0.5px solid #e8ddd3;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.card-img-placeholder {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+.card-body {
+    padding: 0.75rem 1rem;
+}
+.card-name {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    color: #3a2e26;
+    font-weight: 400;
+}
+.card-region {
+    font-size: 0.78rem;
+    color: #8a7060;
+    margin-top: 2px;
+}
+.card-tag {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: #f0e6da;
+    color: #7a5c44;
+}
+.git-section {
+    background: #f5efe8;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 0 2rem 2rem;
+}
+.git-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1rem;
+    color: #3a2e26;
+    margin-bottom: 0.8rem;
+}
+.git-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.git-list li {
+    font-size: 0.85rem;
+    color: #5a4438;
+    padding-left: 1rem;
+    border-left: 2px solid #d4b8a0;
+}
+.git-list span {
+    font-weight: 500;
+    color: #3a2e26;
+}
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    color: #b0967e;
+    border-top: 0.5px solid #e8ddd3;
+    font-style: italic;
+}
