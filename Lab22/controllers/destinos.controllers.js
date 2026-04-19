@@ -68,3 +68,19 @@ exports.get_edit = (request, response, next) => {
         }).catch((error) => {next(error)});
     }).catch((error) => {next(error)});
 };
+
+// Recibe los datos editados y actualiza el destino en la base de datos
+exports.post_edit = (request, response, next) => {
+    // Si se subió una nueva imagen la usamos, si no conservamos la que ya tenía
+    const imagen = request.file ? request.file.filename : request.body.imagen;
+
+    Destino.edit(
+        request.body.id,          // ID del destino a editar
+        request.body.nombre,      // Nuevo nombre
+        request.body.descripcion, // Nueva descripción
+        request.body.continente,  // Nuevo continente
+        imagen                    // Imagen nueva o la que ya tenía
+    ).then(() => {
+        return response.redirect('/destinos');
+    }).catch((error) => {next(error)});
+};
