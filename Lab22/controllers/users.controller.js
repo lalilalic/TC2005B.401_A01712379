@@ -1,5 +1,5 @@
 // Importamos el modelo de usuario y bcrypt para comparar contraseñas encriptadas
-const User = require("../models/user.model");
+const User = require("../model/user.model");
 const bcrypt = require('bcrypt');
 
 // Muestra el formulario de login

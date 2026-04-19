@@ -1,6 +1,6 @@
 // Importamos los modelos de Destino y Continente 
-const Destino = require('../models/destino.model');
-const Continente = require('../models/continente.model');
+const Destino = require('../model/destino.model');
+const Continente = require('../model/continente.model');
 
 // Muestra el formulario para agregar un nuevo destino
 exports.get_add = (request, response, next) => {

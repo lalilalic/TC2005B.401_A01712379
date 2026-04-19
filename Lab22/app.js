@@ -60,7 +60,7 @@ const rutas_usuarios = require('./routes/users.routes');
 app.use('/users', rutas_usuarios);
 
 // Rutas de destinos (listar, crear, editar)
-const rutas_destinos = require('./routes/destinos.routes');
+const rutas_destinos = require('./routes/destinoss.routes');
 app.use('/destinos', rutas_destinos);
 
 // Middleware de manejo de errores internos
