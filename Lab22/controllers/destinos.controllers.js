@@ -17,13 +17,14 @@ exports.get_add = (request, response, next) => {
 
 // Recibe los datos del formulario y guarda el nuevo destino
 exports.post_add = (request, response, next) => {
-    console.log(request.file); // Verificamos que la imagen llegó correctamente
+    console.log(request.file); // Verificar si la imagen llego 
     
     // Creamos el objeto Destino con los datos del formulario
     const destino = new Destino(
-        request.body.nombre,       // Nombre del destino ej: "París"
+        request.body.nombre,       // Nombre del destino 
         request.body.descripcion,  // Descripción del viaje o lugar
         request.body.continente,   // Continente al que pertenece
+
         request.file ? request.file.filename : request.body.imagen // Si no subió imagen nueva, conserva la anterior
     );
 
@@ -33,3 +34,18 @@ exports.post_add = (request, response, next) => {
     }).catch((error) => {next(error)});
 };
 
+// Muestra la lista de destinos
+exports.get_list = (request, response, next) => {
+    console.log(request.session.permisos); // Revisamos qué permisos tiene el usuario
+
+    // Traemos los destinos de la base de datos
+    Destino.fetch(request.params.destino_id).then(([rows, fieldData]) => {
+        return response.render('list', {
+            permisos: request.session.permisos || [], // Permisos para mostrar u ocultar botones en la vista
+            username: request.session.username || '', // Nombre del usuario en sesión
+            destinos: rows, // Lista de destinos a mostrar
+        }); 
+    }).catch((error) => {
+        next(error);
+    });
+};
