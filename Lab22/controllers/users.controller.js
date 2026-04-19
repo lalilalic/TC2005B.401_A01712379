@@ -93,9 +93,9 @@ exports.post_signup = (request, response, next) => {
     } else {
         // Creamos el objeto User con los datos del formulario
         const user = new User(
-            request.body.username,  // Nombre de usuario único
+            request.body.username,  // Nombre de usuario unico
             request.body.nombre,    // Nombre real del usuario
-            request.body.password,  // Contraseña (el modelo se encarga de encriptarla)
+            request.body.password,  // Contraseña 
             request.body.correo     // Correo electrónico
         );
 
