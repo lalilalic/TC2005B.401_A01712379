@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.2",
+    "csurf": "^1.11.0",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "multer": "^2.1.1",
+    "mysql2": "^3.22.1"
+  },
+  "name": "tc2005b.401_a01712379",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LauraA017/TC2005B.401_A01712379.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/LauraA017/TC2005B.401_A01712379/issues"
+  },
+  "homepage": "https://github.com/LauraA017/TC2005B.401_A01712379#readme"
+}
