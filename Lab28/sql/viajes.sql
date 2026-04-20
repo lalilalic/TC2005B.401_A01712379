@@ -60,6 +60,18 @@ END;
 //
 DELIMITER ;
 
+-- Trigger que registra en auditoría cada destino antes de ser eliminado
+DELIMITER //
+CREATE TRIGGER trg_before_delete_destino
+BEFORE DELETE ON destinos
+FOR EACH ROW
+BEGIN
+    INSERT INTO auditoria_destinos (accion, destino_id, nombre_destino)
+    VALUES ('DELETE', OLD.id, OLD.nombre);
+END;
+//
+DELIMITER ;
+
 -- Tablas de usuarios y permisos (igual que el profe)
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -148,3 +160,14 @@ BEGIN
     WHERE id = mi_id;
 END //
 DELIMITER ;
+
+-- Prueba del trigger AFTER INSERT
+INSERT INTO destinos (nombre, descripcion, continente_id, imagen)
+VALUES ('Paris', 'Ciudad famosa por la Torre Eiffel', 2, NULL);
+
+SELECT * FROM auditoria_destinos WHERE accion = 'INSERT';
+
+-- Prueba del trigger BEFORE DELETE
+DELETE FROM destinos WHERE nombre = 'Paris';
+
+SELECT * FROM auditoria_destinos WHERE accion = 'DELETE';
