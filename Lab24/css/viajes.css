@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-height: 100%;
+    background: #f3f4f6;
+}
+
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.app-navbar {
+    background: #fafaf9;
+    border-bottom: 1px solid #d6d3d1;
+}
+
+.brand-title {
+    font-family: "Playfair Display", serif;
+    font-size: 1.35rem;
+    color: #1f2937;
+}
+
+.navbar-item,
+.navbar-link {
+    color: #374151;
+}
+
+.navbar-item:hover,
+.navbar-link:hover {
+    color: #111827;
+}
+
+.app-user-greeting {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #111827 !important;
+}
+
+.app-user-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #000000;
+}
+
+.section {
+    padding: 2.5rem 1.5rem;
+}
+
+.app-main {
+    min-height: calc(100vh - 73px);
+    background: #f3f4f6;
+}
+
+.app-section {
+    min-height: calc(100vh - 73px);
+    background: #f3f4f6;
+}
+
+.container {
+    max-width: 960px;
+}
+
+.title,
+.subtitle,
+.label,
+.content,
+p,
+li {
+    color: #1f2937;
+}
+
+.label {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.field {
+    margin-bottom: 1.25rem;
+}
+
+.input,
+.textarea,
+.select select {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    color: #111827;
+    box-shadow: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: #6b7280;
+}
+
+.input:focus,
+.textarea:focus,
+.select select:focus {
+    border-color: #9ca3af;
+    box-shadow: 0 0 0 0.1rem rgba(156, 163, 175, 0.2);
+}
+
+.button {
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.app-button-primary,
+.button.is-primary {
+    background: #4b5563;
+    border-color: #4b5563;
+    color: #ffffff;
+}
+
+.app-button-primary:hover,
+.button.is-primary:hover {
+    background: #374151;
+    border-color: #374151;
+    color: #ffffff;
+}
+
+.app-button-secondary,
+.button.is-light {
+    background: #e5e7eb;
+    border-color: #d1d5db;
+    color: #1f2937;
+}
+
+.app-button-secondary:hover,
+.button.is-light:hover {
+    background: #d1d5db;
+    border-color: #cbd5e1;
+    color: #111827;
+}
+
+.box,
+form {
+    color: #1f2937;
+}
+
+.help,
+.has-text-grey,
+.has-text-grey-dark {
+    color: #4b5563 !important;
+}
+
+.message.is-danger {
+    background: #fff7ed;
+    color: #7c2d12;
+    border: 1px solid #fdba74;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.message.is-danger .message-header {
+    background: #fed7aa;
+    color: #7c2d12;
+    border-bottom: 1px solid #fdba74;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.message.is-danger .message-header p {
+    color: #7c2d12;
+}
+
+.message.is-danger .delete {
+    background: rgba(124, 45, 18, 0.18);
+}
+
+.message.is-danger .message-body {
+    background: #fffaf5;
+    color: #7c2d12;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 1.2rem 1.4rem;
+}
+
+.card,
+.panel,
+.table {
+    background: #ffffff;
+    color: #1f2937;
+}
+
+table td,
+table th {
+    color: #1f2937;
+}
