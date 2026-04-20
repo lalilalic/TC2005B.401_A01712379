@@ -43,5 +43,15 @@ module.exports = class Destino {
             [nombre, descripcion, continente, imagen, id]
         );
     }
+
+    static buscar(busqueda) {
+    return db.execute
+        (`
+            SELECT d.id, nombre, descripcion, continente, imagen  
+            FROM destinos d, continentes c
+            WHERE d.continente_id = c.id AND (nombre LIKE ? OR descripcion LIKE ? OR continente LIKE ?)
+         `, ['%' + busqueda + '%', '%' + busqueda + '%', '%' + busqueda + '%']
+        );
+    }
 }
 
