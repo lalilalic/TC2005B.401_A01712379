@@ -44,9 +44,10 @@ module.exports = class Destino {
         );
     }
 
+    // Busca de destinos por nombre, descripcion o continente usando LIKE
     static buscar(busqueda) {
     return db.execute
-        (`
+        (` 
             SELECT d.id, nombre, descripcion, continente, imagen  
             FROM destinos d, continentes c
             WHERE d.continente_id = c.id AND (nombre LIKE ? OR descripcion LIKE ? OR continente LIKE ?)
