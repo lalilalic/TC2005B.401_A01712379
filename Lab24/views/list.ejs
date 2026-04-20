@@ -1,30 +1,93 @@
 <%- include('includes/_header') %>
 
+<label for="buscar">Buscar</label>
+<!-- Input donde el usuario escribe su búsqueda -->
+<input type="text" id="buscar" class="input is-primary" placeholder="Marruecos...">
+<br><br>
+
+<!-- Solo mostramos el botón de nuevo destino si el usuario tiene permiso de crear -->
 <% for (let permiso of permisos) { %>
     <% if (permiso.nombre_privilegio == 'crear_destinos') { %>
         <a class="button is-primary" href="/destinos/new">Nuevo destino</a>
     <% } %>
 <% } %>
 
-<% /* aqui quite unos cierres de mas porque me rompian la vista */ %>
-<div class="columns">
-    <% if(destinos.length == 0) { %>
-        <div class="column">
-            No hay destinos registrados.
-        </div>
-    <% } else { %>
-        <% for (let destino of destinos) { %>
-            <div class="column">
-                <a href="/destinos/<%= destino.id %>"><%= destino.nombre %></a>
-                <figure class="image">
-                    <img class="is-rounded" src="<%= destino.imagen %>" />
-                </figure>
-                <a class="button is-primary" href="/destinos/<%= destino.id %>/edit">
-                    <span>Editar</span>
-                </a>
+        <!-- div lista: es el contenedor que vamos a actualizar con AJAX -->
+        <div id="lista">
+            <div class="columns">
+            <!-- Si no hay destinos mostramos un mensaje -->
+            <% if(destinos.length == 0) { %>
+                <div class="column">
+                    No hay destinos registrados.
+                </div>
+            <% } else { %>
+                <!-- Si hay destinos los recorremos y mostramos cada uno -->
+                <% for (let destino of destinos) { %>
+                    <div class="column">
+                        <a href="/destinos/<%= destino.id %>"><%= destino.nombre %></a>
+                        <figure class="image">
+                            <img class="is-rounded" src="<%= destino.imagen %>" />
+                        </figure>
+                        <a class="button is-primary" href="/destinos/<%= destino.id %>/edit">
+                            <span>Editar</span>
+                        </a>
+                    </div>
+                <% } %>
+            <% } %>
             </div>
-        <% } %>
-    <% } %>
-</div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const buscar = document.getElementById("buscar");
+
+    // Cada vez que el usuario suelta una tecla se dispara la función
+    buscar.onkeyup = () => {
+        console.log(buscar.value);
+
+        // fetch hace la petición GET al servidor de forma asíncrona sin recargar la página
+        fetch(`/destinos/buscar/${buscar.value}`, {
+            method: 'GET',
+        }).then((result) => {
+            // Convertimos la respuesta del servidor a JSON
+            return result.json();
+        }).then((data) => {
+            console.log(data);
+
+            // Empezamos a construir el HTML con los resultados que regresó el servidor
+            let html = '<div class="columns">';
+
+            // Si no hay resultados mostramos mensaje
+            if(data.destinos.length == 0) { 
+                html += `<div class="column">
+                    No hay destinos registrados.
+                </div>`;
+            } else { 
+                // Si hay resultados construimos una tarjeta por cada destino
+                for (let destino of data.destinos) { 
+                    html += `<div class="column">
+                        <a href="/destinos/${destino.id}">${destino.nombre}</a>
+                        <figure class="image">
+                            <img class="is-rounded" src="${destino.imagen}" />
+                        </figure>
+                        <a class="button is-primary" href="/destinos/${destino.id}/edit">
+                            <span>Editar</span>
+                        </a>
+                    </div>`;       
+                }
+            }
+            html += `</div>`;
+
+            // Reemplazamos el contenido del div lista con los nuevos resultados
+            // Esto actualiza la página sin recargarla, eso es AJAX
+            const lista = document.getElementById("lista");
+            lista.innerHTML = html;
+        }).catch((error) => {
+            // Si hay un error lo mostramos en consola
+            console.log(error);
+        });
+    }
+</script>
 
 <%- include('includes/_footer') %>

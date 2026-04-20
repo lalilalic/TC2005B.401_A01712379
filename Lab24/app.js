@@ -24,6 +24,7 @@ app.use(session({
 // bodyParser para leer datos de formularios
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // Configuracion de multer para subida de imágenes
 const multer = require('multer');
