@@ -38,27 +38,15 @@ INSERT INTO `continentes` (`continente`) VALUES
 ALTER TABLE `destinos`
   ADD CONSTRAINT `destinos_ibfk_1` FOREIGN KEY (`continente_id`) REFERENCES `continentes` (`id`);
 
--- Tabla de auditoría para guardar acciones realizadas sobre destinos
+-- Tabla de auditoria para guardar acciones realizadas sobre destinos
 CREATE TABLE IF NOT EXISTS auditoria_destinos (
-    id INT AUTO_INCREMENT PRIMARY KEY, -- identificador único del registro de auditoría
-    accion VARCHAR(50) NOT NULL,       -- tipo de acción realizada: INSERT, DELETE, etc.
-    destino_id INT,                    -- id del destino afectado
-    nombre_destino VARCHAR(100),       -- nombre del destino afectado
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- fecha y hora en que ocurrió la acción
-    usuario VARCHAR(100) DEFAULT 'sistema'     -- usuario responsable de la acción
+    id INT AUTO_INCREMENT PRIMARY KEY, -- identificador unico de cada registro de uaditoria
+    accion VARCHAR(50) NOT NULL, -- tipo de accion realizada 
+    destino_id INT, -- id del destino afectado
+    nombre_destino VARCHAR(100), -- nombre del destino afectado
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- fecha y hora que ourrio la accion
+    usuario VARCHAR(100) DEFAULT 'sistema' -- usuario repsonsabole de la accion
 );
-
--- Trigger que registra en auditoría cada nuevo destino insertado
-DELIMITER //
-CREATE TRIGGER trg_after_insert_destino
-AFTER INSERT ON destinos
-FOR EACH ROW
-BEGIN
-    INSERT INTO auditoria_destinos (accion, destino_id, nombre_destino)
-    VALUES ('INSERT', NEW.id, NEW.nombre);
-END;
-//
-DELIMITER ;
 
 -- Trigger que registra en auditoría cada destino antes de ser eliminado
 DELIMITER //
@@ -71,6 +59,18 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+-- Prueba del trigger AFTER INSERT
+INSERT INTO destinos (nombre, descripcion, continente_id, imagen)
+VALUES ('Paris', 'Ciudad famosa por la Torre Eiffel', 2, NULL);
+
+SELECT * FROM auditoria_destinos WHERE accion = 'INSERT';
+
+-- Prueba del trigger BEFORE DELETE
+DELETE FROM destinos WHERE nombre = 'Paris';
+
+SELECT * FROM auditoria_destinos WHERE accion = 'DELETE';
+
 
 -- Tablas de usuarios y permisos (igual que el profe)
 CREATE TABLE `roles` (
@@ -120,6 +120,70 @@ ALTER TABLE `tiene`
   ADD CONSTRAINT `tiene_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`username`),
   ADD CONSTRAINT `tiene_ibfk_2` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`id`);
 
+CREATE TABLE `historial_destinos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `destino_id` int(11) NOT NULL,
+  `nombre_anterior` varchar(100) NOT NULL,
+  `descripcion_anterior` varchar(500) NOT NULL,
+  `continente_anterior_id` int(11) NOT NULL,
+  `imagen_anterior` varchar(500) DEFAULT NULL,
+  `nombre_nuevo` varchar(100) NOT NULL,
+  `descripcion_nueva` varchar(500) NOT NULL,
+  `continente_nuevo_id` int(11) NOT NULL,
+  `imagen_nueva` varchar(500) DEFAULT NULL,
+  `fecha_cambio` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `destino_id` (`destino_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+ALTER TABLE `historial_destinos`
+  ADD CONSTRAINT `historial_destinos_ibfk_1` FOREIGN KEY (`destino_id`) REFERENCES `destinos` (`id`);
+
+DELIMITER //
+CREATE TRIGGER asignar_rol_viajero
+AFTER INSERT ON usuarios
+FOR EACH ROW
+BEGIN
+    INSERT INTO tiene(id_usuario, id_rol)
+    VALUES (NEW.username, 1);
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER auditar_cambios_destino
+AFTER UPDATE ON destinos
+FOR EACH ROW
+BEGIN
+    IF OLD.nombre <> NEW.nombre
+       OR OLD.descripcion <> NEW.descripcion
+       OR OLD.continente_id <> NEW.continente_id
+       OR IFNULL(OLD.imagen, '') <> IFNULL(NEW.imagen, '') THEN
+        INSERT INTO historial_destinos(
+            destino_id,
+            nombre_anterior,
+            descripcion_anterior,
+            continente_anterior_id,
+            imagen_anterior,
+            nombre_nuevo,
+            descripcion_nueva,
+            continente_nuevo_id,
+            imagen_nueva
+        )
+        VALUES (
+            OLD.id,
+            OLD.nombre,
+            OLD.descripcion,
+            OLD.continente_id,
+            OLD.imagen,
+            NEW.nombre,
+            NEW.descripcion,
+            NEW.continente_id,
+            NEW.imagen
+        );
+    END IF;
+END //
+DELIMITER ;
+
 -- Procedimiento para obtener todos los destinos
 DELIMITER //
 CREATE PROCEDURE obtener_destinos()
@@ -161,13 +225,4 @@ BEGIN
 END //
 DELIMITER ;
 
--- Prueba del trigger AFTER INSERT
-INSERT INTO destinos (nombre, descripcion, continente_id, imagen)
-VALUES ('Paris', 'Ciudad famosa por la Torre Eiffel', 2, NULL);
 
-SELECT * FROM auditoria_destinos WHERE accion = 'INSERT';
-
--- Prueba del trigger BEFORE DELETE
-DELETE FROM destinos WHERE nombre = 'Paris';
-
-SELECT * FROM auditoria_destinos WHERE accion = 'DELETE';
