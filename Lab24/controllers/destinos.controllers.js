@@ -84,3 +84,13 @@ exports.post_edit = (request, response, next) => {
         return response.redirect('/destinos');
     }).catch((error) => {next(error)});
 };
+
+// Busca destinos y regresa los resultados en formato JSON para AJAX
+exports.get_buscar = (request, response, next) => {
+    Destino.buscar(request.params.busqueda).then(([destinos, fieldData]) => {
+        // Regresamos los destinos en JSON en lugar de renderizar una vista
+        return response.status(200).json({destinos: destinos});
+    }).catch((error) => {
+        return response.status(500).json({message: error.stack});
+    });
+}
