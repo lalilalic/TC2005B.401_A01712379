@@ -15,7 +15,8 @@
   "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "test": "echo \"Sin pruebas automatizadas para lab26\""
   },
   "dependencies": {
     "express": "^5.2.1"

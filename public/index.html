@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 26</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="contenedor">
+      <h1>Lab 26: Servicios web</h1>
+
+      <p>API que escogí: Vimeo</p>
+      <p>
+        Esta aplicación usa el API de Vimeo para mostrar información de un
+        video.
+      </p>
+
+      <!-- Boton para consultar el API -->
+      <button id="boton">Cargar datos del video</button>
+
+      <h2>Resultado del API</h2>
+      <p id="mensaje"></p>
+
+      <!-- Aqui se muestran los datos que vienen del API -->
+      <div id="resultado" hidden>
+        <p><strong>Título:</strong> <span id="titulo"></span></p>
+        <p><strong>Autor:</strong> <span id="autor"></span></p>
+        <img id="imagen" alt="Miniatura del video" />
+        <div id="video"></div>
+      </div>
+
+      <h2>Pregunta</h2>
+      <p>
+        ¿Qué ventajas y desventajas tiene la integración de tus aplicaciones
+        web con servicios web desarrollados por terceros?
+      </p>
+
+      <p>
+        Una ventaja es que no tenemos que programar todo desde cero y podemos
+        usar funciones que ya existen.
+      </p>
+
+      <p>
+        Una desventaja es que dependemos de otro servicio. Si el API cambia o
+        deja de funcionar, nuestra aplicación también puede tener problemas.
+      </p>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
