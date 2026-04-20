@@ -9,19 +9,15 @@ const video = document.getElementById("video");
 // Esta funcion pide los datos al servidor
 async function cargarDatos() {
   mensaje.textContent = "Cargando...";
+  // Pedimos los datos de Vimeo a nuestra ruta
+  const respuesta = await fetch("/api/vimeo");
+  const datos = await respuesta.json();
 
-  try {
-    // Pedimos los datos de Vimeo a nuestra ruta
-    const respuesta = await fetch("/api/vimeo");
-    const datos = await respuesta.json();
-
-    // Si viene un error, lo mostramos
-    if (datos.error) {
-      mensaje.textContent = datos.error;
-      resultado.hidden = true;
-      return;
-    }
-
+  // Si viene un error, lo mostramos
+  if (datos.error) {
+    mensaje.textContent = datos.error;
+    resultado.hidden = true;
+  } else {
     // Ponemos los datos en la pagina
     titulo.textContent = datos.title;
     autor.textContent = datos.author_name;
@@ -30,10 +26,6 @@ async function cargarDatos() {
 
     mensaje.textContent = "Datos cargados";
     resultado.hidden = false;
-  } catch (error) {
-    // Si ocurre un error general, mostramos mensaje
-    mensaje.textContent = "Ocurrió un error";
-    resultado.hidden = true;
   }
 }
 
