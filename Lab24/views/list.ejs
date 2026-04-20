@@ -1,0 +1,30 @@
+<%- include('includes/_header') %>
+
+<% for (let permiso of permisos) { %>
+    <% if (permiso.nombre_privilegio == 'crear_destinos') { %>
+        <a class="button is-primary" href="/destinos/new">Nuevo destino</a>
+    <% } %>
+<% } %>
+
+<% /* aqui quite unos cierres de mas porque me rompian la vista */ %>
+<div class="columns">
+    <% if(destinos.length == 0) { %>
+        <div class="column">
+            No hay destinos registrados.
+        </div>
+    <% } else { %>
+        <% for (let destino of destinos) { %>
+            <div class="column">
+                <a href="/destinos/<%= destino.id %>"><%= destino.nombre %></a>
+                <figure class="image">
+                    <img class="is-rounded" src="<%= destino.imagen %>" />
+                </figure>
+                <a class="button is-primary" href="/destinos/<%= destino.id %>/edit">
+                    <span>Editar</span>
+                </a>
+            </div>
+        <% } %>
+    <% } %>
+</div>
+
+<%- include('includes/_footer') %>

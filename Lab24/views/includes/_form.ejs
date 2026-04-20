@@ -1,0 +1,56 @@
+<% if (edit) { %>
+    <form action="/destinos/edit" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%= destino.id %>">
+<% } else { %>
+    <form action="/destinos/new" method="POST" enctype="multipart/form-data">
+<% } %>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+
+    <div class="field">
+        <label for="nombre" class="label">Nombre del destino</label>
+        <div class="control">
+            <input id="nombre" name="nombre" class="input" type="text" 
+                placeholder="e.g. Marruecos"
+                value="<% if(edit) { %><%= destino.nombre %><% } %>"
+            >
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="descripcion" class="label">Descripción</label>
+        <div class="control">
+            <input id="descripcion" name="descripcion" class="input" type="text" 
+                placeholder="e.g. País lleno de colores y especias..."
+                value="<% if(edit) { %><%= destino.descripcion %><% } %>"
+            >
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Continente</label>
+        <div class="select">
+            <select name="continente" class="select">
+                <% for(let continente of continentes) { %>
+                    <option value="<%= continente.id %>"
+                        <% if(edit) { %>
+                            <% if (destino.continente_id == continente.id) { %>
+                                selected
+                            <% } %>
+                        <% } %>
+                    >
+                        <%= continente.continente %>
+                    </option>
+                <% } %>
+            </select>
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="imagen" class="label">Imagen</label>
+        <div class="control">
+            <input id="imagen" name="imagen" class="input" type="file">
+        </div>
+    </div>
+
+    <input class="button is-primary" type="submit" value="Guardar destino">
+</form>
