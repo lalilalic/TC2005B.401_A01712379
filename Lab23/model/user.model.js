@@ -18,7 +18,8 @@ module.exports = class User {
                 "INSERT INTO usuarios(username, nombre, password, correo) VALUES (?, ?, ?, ?)",
                 [this.username, this.nombre, password_cifrado, this.correo]
             ).then(() => {
-                // Rol 1 = viajero, con permiso para ver destinos
+                // esto lo agregue porque el usuario se guardaba pero sin permisos
+                // el rol 1 es viajero y con eso ya puede ver destinos
                 return db.execute(
                     "INSERT INTO tiene(id_usuario, id_rol) VALUES (?, ?)",
                     [this.username, 1]

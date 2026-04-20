@@ -2,13 +2,15 @@ const express = require('express');
 const app = express();
 const path = require("path");
 
-// Carpeta public/uploads accesible de forma estática para mostrar imágenes
+// use __dirname para que agarre bien las carpetas aunque corra desde otra ruta
 app.use(express.static(path.join(__dirname, 'public/uploads')));
 app.use(express.static(path.join(__dirname, 'public')));
+// esto lo puse para que si cargara mi css local
 app.use('/css', express.static(path.join(__dirname, 'css')));
 
 // Configuramos EJS como motor de vistas
 app.set('view engine', 'ejs');
+// con esto ya encontro bien las vistas de lab23
 app.set('views', path.join(__dirname, 'views'));
 
 // Configuración de sesiones
@@ -28,7 +30,7 @@ const multer = require('multer');
 
 const fileStorage = multer.diskStorage({
     destination: (request, file, callback) => {
-        // Carpeta donde se guardaran las imágenes de los destinos
+        // aqui tambien use __dirname para que no se perdiera la ruta
         callback(null, path.join(__dirname, 'public/uploads'));
     },
     filename: (request, file, callback) => {
@@ -64,7 +66,7 @@ app.use('/users', rutas_usuarios);
 const rutas_destinos = require('./routes/destinoss.routes');
 app.use('/destinos', rutas_destinos);
 
-// Ruta principal para abrir algo util al entrar a localhost
+// esta ruta la puse para que localhost no mande error
 app.get('/', (request, response) => {
     if (request.session.isLoggedIn) {
         return response.redirect('/destinos');
@@ -82,6 +84,7 @@ app.use((request, response, next) => {
     response.status(404).send("La ruta no existe");
 });
 
+// lo deje asi para poder usar otro puerto si 3000 ya estaba ocupado
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
